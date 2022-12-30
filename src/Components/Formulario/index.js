@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import Botao from '../Botao';
-import Campotexto from '../CampoTexto';
+import Campo from '../Campo';
 import ListaSuspensa from '../ListaSuspensa';
 import './Formulario.css';
 
-const Formulario = (props) => {
+const Formulario = ({ aoCadastrar, times }) => {
 
     const [nome, setNome] = useState('');
     const [cargo, setCargo] = useState('');
     const [imagem, setImagem] = useState('');
     const [time, setTime] = useState('');
 
-    const aoSalvar = (event) => {
-        event.preventDefault()
-        props.aoColaboradorCadastrado ({
+    const aoSalvar = (evento) => {
+        evento.preventDefault()
+        aoCadastrar({
             nome,
             cargo,
             imagem,
@@ -29,32 +29,32 @@ const Formulario = (props) => {
         <section className='formulario'>
             <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <Campotexto 
-                required={true} 
-                label='Nome' 
-                placeholder='Digite seu nome' 
-                valor={nome}
-                aoAlterado={valor => setNome(valor)}
+                <Campo
+                    required={true}
+                    label='Nome'
+                    placeholder='Digite seu nome'
+                    valor={nome}
+                    aoAlterado={valor => setNome(valor)}
                 />
-                <Campotexto 
-                required={true} 
-                label='Cargo' 
-                placeholder='Digite seu cargo' 
-                valor={cargo}
-                aoAlterado={valor => setCargo(valor)}
+                <Campo
+                    required={true}
+                    label='Cargo'
+                    placeholder='Digite seu cargo'
+                    valor={cargo}
+                    aoAlterado={valor => setCargo(valor)}
                 />
-                <Campotexto 
-                label='Imagem' 
-                placeholder='Digite o endereço da imagem' 
-                valor={imagem}
-                aoAlterado={valor => setImagem(valor)}
+                <Campo
+                    label='Imagem'
+                    placeholder='Digite o endereço da imagem'
+                    valor={imagem}
+                    aoAlterado={valor => setImagem(valor)}
                 />
-                <ListaSuspensa 
-                required={true} 
-                label='Time' 
-                itens={props.times} 
-                valor={time}
-                aoAlterado={valor => setTime(valor)}
+                <ListaSuspensa
+                    required={true}
+                    label='Time'
+                    itens={times}
+                    valor={time}
+                    aoAlterado={valor => setTime(valor)}
                 />
                 <Botao>
                     Criar Card

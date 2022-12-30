@@ -13,7 +13,7 @@ function App() {
       corSecundaria: '#D9F7E9'
     },
     {
-      nome: 'Front-End',    
+      nome: 'Front-End',
       corPrimaria: '#82CFFA',
       corSecundaria: '#E8F8FF'
     },
@@ -23,7 +23,7 @@ function App() {
       corSecundaria: '#F0F8E2'
     },
     {
-      nome: 'Devops',       
+      nome: 'Devops',
       corPrimaria: '#E06B69',
       corSecundaria: '#FDE7E8'
     },
@@ -44,23 +44,55 @@ function App() {
     }
   ]
 
-  const [colaboradores, setColaboradores] = useState([])
+  const inicial = [
+    {
+      nome: 'Israel Douglas',
+      cargo: 'Desenvolvedor Back-End',
+      imagem: 'https://github.com/israeldouglas25.png',
+      time: times[0].nome
+    },
+    {
+      nome: 'Stephanie Souza',
+      cargo: 'Desenvolvedora Front-End',
+      imagem: 'https://github.com/tesouzas.png',
+      time: times[1].nome
+    },
+    {
+      nome: 'Amanda Soares',
+      cargo: 'Analista de Dados',
+      imagem: 'https://github.com/MandaSoares.png',
+      time: times[2].nome
+    },
+    {
+      nome: 'Ana Fontes',
+      cargo: 'Banco de Dados',
+      imagem: 'https://github.com/anafontessp.png',
+      time: times[3].nome
+    },
+  ]
 
-  const aoNovoColaboradorAdicionado = (colaborador) => {
-    setColaboradores([...colaboradores, colaborador])
-  }
+  const [colaboradores, setColaboradores] = useState(inicial)
 
   return (
-    <div className="App">
+    <div>
       <Banner />
-      <Formulario times={times.map(time => time.nome)} aoColaboradorCadastrado={colaborador => aoNovoColaboradorAdicionado(colaborador)}/>
-      {times.map(time => <Time 
-        key={time.nome} 
-        nome={time.nome} 
-        corPrimaria={time.corPrimaria} 
-        corSecundaria={time.corSecundaria}
-        colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
-      />)}
+      <Formulario
+        times={times.map(time => time.nome)}
+        aoCadastrar={colaborador => setColaboradores([...colaboradores, colaborador])}
+      />
+      <section className='times'>
+        <h1>RECODE PRO</h1>
+        <h2>SQUAD 25</h2>
+        {times.map((time, indice) =>
+          <Time
+            key={indice}
+            time={time}
+            colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)}
+            corPrimaria={time.corPrimaria}
+            corSecundaria={time.corSecundaria}
+          />
+        )}
+      </section>
       <Rodape />
     </div>
   );
