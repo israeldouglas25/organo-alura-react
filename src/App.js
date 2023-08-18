@@ -93,7 +93,7 @@ function App() {
 
   return (
     <div>
-      <Banner />
+      <Banner enderecoImagem='/imagens/banner.png' textoAlternativo='Logo do Organo'/>
       <Formulario
         times={times.map(time => time.nome)}
         aoCadastrar={colaborador => setColaboradores([...colaboradores, colaborador])}
