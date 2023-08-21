@@ -7,7 +7,7 @@ interface BannerProps {
 
 const Banner = ({ enderecoImagem, textoAlternativo }: BannerProps) => {
     return (
-        <header className="cabecalho">
+        <header className="banner">
             <img src={enderecoImagem} alt={textoAlternativo} />
         </header>
     )
